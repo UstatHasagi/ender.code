@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ender.Code | Kategoriler</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#0b1120;
+color:white;
+overflow-x:hidden;
+}
+
+/* Hareketli Arkaplan */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:
+radial-gradient(circle,#2563eb22 0%,transparent 25%),
+radial-gradient(circle,#3b82f611 0%,transparent 35%);
+background-size:350px 350px;
+animation:bg 18s linear infinite;
+z-index:-2;
+}
+
+@keyframes bg{
+from{
+transform:translate(0,0);
+}
+to{
+transform:translate(-220px,-220px);
+}
+}
+
+header{
+padding:25px 10%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+}
+
+.logo span{
+color:#3b82f6;
+}
+
+.back{
+color:white;
+text-decoration:none;
+transition:.3s;
+}
+
+.back:hover{
+color:#3b82f6;
+}
+
+.hero{
+text-align:center;
+padding:70px 20px 40px;
+animation:fade 1s;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:15px;
+}
+
+.hero p{
+color:#b8c0d4;
+font-size:18px;
+}
+
+.grid{
+width:90%;
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+padding:40px 0 80px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+border-radius:20px;
+padding:35px;
+text-align:center;
+text-decoration:none;
+color:white;
+transition:.35s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+width:180px;
+height:180px;
+background:#3b82f620;
+border-radius:50%;
+top:-80px;
+right:-80px;
+transition:.4s;
+}
+
+.card:hover::before{
+transform:scale(1.6);
+}
+
+.card:hover{
+transform:translateY(-12px);
+box-shadow:0 0 35px rgba(59,130,246,.35);
+border-color:#3b82f6;
+}
+
+.icon{
+font-size:65px;
+margin-bottom:20px;
+}
+
+.card h2{
+margin-bottom:10px;
+}
+
+.card p{
+color:#b7bfd1;
+line-height:1.6;
+}
+
+footer{
+padding:30px;
+text-align:center;
+color:#7f8aa0;
+border-top:1px solid rgba(255,255,255,.08);
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+Ender<span>.Code</span>
+</div>
+
+<a class="back" href="index.html">← Ana Sayfa</a>
+
+</header>
+
+<section class="hero">
+
+<h1>Kod Kategorileri</h1>
+
+<p>
+İlgilendiğin kategoriyi seçerek kod arşivine göz at.
+</p>
+
+</section>
+
+<section class="grid">
+
+<a href="web.html" class="card">
+
+<div class="icon">🌐</div>
+
+<h2>Web</h2>
+
+<p>
+HTML, CSS, PHP, Bootstrap ve web geliştirme kodları.
+</p>
+
+</a>
+
+<a href="javascript.html" class="card">
+
+<div class="icon">⚡</div>
+
+<h2>JavaScript</h2>
+
+<p>
+Animasyonlar, DOM işlemleri ve JS projeleri.
+</p>
+
+</a>
+
+<a href="python.html" class="card">
+
+<div class="icon">🐍</div>
+
+<h2>Python</h2>
+
+<p>
+Botlar, otomasyonlar ve Python scriptleri.
+</p>
+
+</a>
+
+<a href="cmd.html" class="card">
+
+<div class="icon">💻</div>
+
+<h2>CMD</h2>
+
+<p>
+Windows CMD, PowerShell ve terminal komutları.
+</p>
+
+</a>
+
+</section>
+
+<footer>
+
+© 2022 Ender.Code • Kod Arşivi
+
+</footer>
+
+</body>
+</html>
