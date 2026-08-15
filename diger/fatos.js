@@ -1,33 +1,159 @@
-const canvas = document.getElementById("heartCanvas");
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-let width;
-let height;
-let dpr;
+let W = 0;
+let H = 0;
+let dpr = 1;
 
-function resizeCanvas() {
+function resize() {
+
     dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    width = window.innerWidth;
-    height = window.innerHeight;
+    W = window.innerWidth;
+    H = window.innerHeight;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
 
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
+    canvas.style.width = W + "px";
+    canvas.style.height = H + "px";
 
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
+window.addEventListener("resize", resize);
+resize();
 
-const layers = 9;
+/* ================================================= */
+/*                     SAKURA                        */
+/* ================================================= */
+
+const petals = [];
+
+const PETAL_COUNT = 45;
+
+for (let i = 0; i < PETAL_COUNT; i++) {
+
+    petals.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+
+        size: Math.random() * 8 + 5,
+
+        speed: Math.random() * 1.2 + .4,
+
+        rotation: Math.random() * Math.PI * 2,
+
+        rotationSpeed:
+            (Math.random() - .5) * .025,
+
+        sway: Math.random() * Math.PI * 2,
+
+        swaySpeed:
+            Math.random() * .015 + .005,
+
+        opacity:
+            Math.random() * .45 + .35
+    });
+
+}
+
+function drawPetal(p) {
+
+    ctx.save();
+
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation);
+
+    ctx.globalAlpha = p.opacity;
+
+    ctx.fillStyle = "#f3b6c8";
+
+    ctx.beginPath();
+
+    /*
+        Sakura yaprağı şekli
+    */
+
+    ctx.moveTo(0, -p.size);
+
+    ctx.bezierCurveTo(
+        p.size,
+        -p.size * .65,
+        p.size,
+        p.size * .5,
+        0,
+        p.size
+    );
+
+    ctx.bezierCurveTo(
+        -p.size,
+        p.size * .5,
+        -p.size,
+        -p.size * .65,
+        0,
+        -p.size
+    );
+
+    ctx.fill();
+
+    /*
+        Ortadaki küçük çentik
+    */
+
+    ctx.fillStyle = "#000";
+
+    ctx.beginPath();
+
+    ctx.moveTo(0, -p.size);
+    ctx.lineTo(-2, -p.size * .35);
+    ctx.lineTo(2, -p.size * .35);
+
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.restore();
+}
+
+function updatePetals() {
+
+    for (const p of petals) {
+
+        p.y += p.speed;
+
+        p.sway += p.swaySpeed;
+
+        p.x += Math.sin(p.sway) * .45;
+
+        p.rotation += p.rotationSpeed;
+
+        if (p.y > H + 30) {
+
+            p.y = -30;
+
+            p.x = Math.random() * W;
+        }
+
+        if (p.x > W + 30) {
+            p.x = -30;
+        }
+
+        if (p.x < -30) {
+            p.x = W + 30;
+        }
+
+    }
+
+}
+
+/* ================================================= */
+/*                  KALP FONKSİYONU                  */
+/* ================================================= */
 
 function heartPoint(t, scale) {
 
-    const x = 16 * Math.pow(Math.sin(t), 3);
+    const x =
+        16 * Math.pow(Math.sin(t), 3);
 
     const y =
         13 * Math.cos(t)
@@ -39,137 +165,252 @@ function heartPoint(t, scale) {
         x: x * scale,
         y: -y * scale
     };
+
 }
 
-function drawHeartText(radius, rotation, fontSize, opacity, spacing) {
+/* ================================================= */
+/*              KALBE YAZI DİZME                   */
+/* ================================================= */
+
+function drawHeart(time) {
+
+    const centerX = W / 2;
+    const centerY = H / 2;
+
+    /*
+        Ekrana göre kalp boyutu
+    */
+
+    const scale =
+        Math.min(W, H) * 0.026;
+
+    /*
+        Kalbin nefes alması
+    */
+
+    const pulse =
+        1 +
+        Math.sin(time * 0.0022) * 0.035;
 
     ctx.save();
 
-    ctx.translate(width / 2, height / 2);
+    ctx.translate(centerX, centerY);
 
-    ctx.rotate(rotation);
+    /*
+        Hafif dönen ışık
+    */
 
-    ctx.font = `${fontSize}px Arial`;
+    const glow =
+        Math.sin(time * 0.002) * 5 + 18;
+
+    ctx.shadowColor = "rgba(255,255,255,.8)";
+    ctx.shadowBlur = glow;
+
+    ctx.fillStyle = "#fff";
+
+    ctx.font = "600 14px Arial";
+
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    ctx.shadowColor = "rgba(255,255,255,.7)";
-    ctx.shadowBlur = fontSize * 0.6;
+    /*
+        Yazı kalbin çizgisi boyunca ilerliyor
+    */
 
-    ctx.fillStyle = `rgba(255,255,255,${opacity})`;
+    const text = "FATOŞ 🤍";
 
-    const text = "Fatoş 🤍";
-
-    const total = Math.floor(2 * Math.PI * radius / spacing);
+    const total = 300;
 
     for (let i = 0; i < total; i++) {
 
-        const t = (i / total) * Math.PI * 2;
+        const t =
+            (Math.PI * 2 / total) * i;
 
-        const point = heartPoint(t, radius / 18);
+        const p =
+            heartPoint(t, scale * pulse);
 
-        const next = heartPoint(t + 0.01, radius / 18);
+        /*
+            Bir sonraki nokta ile açı hesaplama
+        */
 
-        const angle = Math.atan2(
-            next.y - point.y,
-            next.x - point.x
-        );
+        const next =
+            heartPoint(
+                t + 0.012,
+                scale * pulse
+            );
+
+        const angle =
+            Math.atan2(
+                next.y - p.y,
+                next.x - p.x
+            );
+
+        /*
+            Hafif hareket
+        */
+
+        const wave =
+            Math.sin(
+                time * 0.0018 +
+                i * .15
+            ) * .8;
 
         ctx.save();
 
-        ctx.translate(point.x, point.y);
+        ctx.translate(
+            p.x,
+            p.y + wave
+        );
 
         ctx.rotate(angle);
 
-        ctx.fillText(text, 0, 0);
+        /*
+            Küçük noktaları biraz şeffaf,
+            ana yazıları daha parlak yap
+        */
+
+        ctx.globalAlpha =
+            .72 +
+            Math.sin(
+                time * 0.002 +
+                i * .08
+            ) * .18;
+
+        ctx.fillText(
+            text,
+            0,
+            0
+        );
 
         ctx.restore();
     }
 
     ctx.restore();
+
 }
 
-let time = 0;
+/* ================================================= */
+/*                 MERKEZ PARLAMA                   */
+/* ================================================= */
 
-function animate() {
+function drawCenterGlow(time) {
 
-    time += 0.008;
+    const pulse =
+        1 +
+        Math.sin(time * .003) * .08;
 
-    ctx.clearRect(0, 0, width, height);
+    const radius =
+        75 * pulse;
 
-    /*
-        Hafif merkez parlaması
-    */
+    const gradient =
+        ctx.createRadialGradient(
+            W / 2,
+            H / 2,
+            0,
+            W / 2,
+            H / 2,
+            radius
+        );
 
-    const glow = ctx.createRadialGradient(
-        width / 2,
-        height / 2,
+    gradient.addColorStop(
         0,
-        width / 2,
-        height / 2,
-        Math.min(width, height) * .55
+        "rgba(255,255,255,.08)"
     );
 
-    glow.addColorStop(0, "rgba(255,255,255,.025)");
-    glow.addColorStop(1, "rgba(0,0,0,0)");
+    gradient.addColorStop(
+        1,
+        "rgba(255,255,255,0)"
+    );
 
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(
+        W / 2 - radius,
+        H / 2 - radius,
+        radius * 2,
+        radius * 2
+    );
+
+}
+
+/* ================================================= */
+/*                     ANİMASYON                    */
+/* ================================================= */
+
+let start = performance.now();
+
+function animate(now) {
+
+    const time = now - start;
 
     /*
-        Kalpler
+        Temizleme
     */
 
-    for (let i = 0; i < layers; i++) {
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
 
-        const pulse =
-            1 +
-            Math.sin(time * 2 + i * .45) * 0.025;
+    /*
+        Hafif siyah üzerine beyaz ışık
+    */
 
-        const base =
-            Math.min(width, height) *
-            (0.009 + i * 0.0095);
-
-        const rotation =
-            time * (i % 2 === 0 ? 0.08 : -0.08);
-
-        drawHeartText(
-            base * pulse,
-            rotation,
-            Math.max(7, base * .08),
-            0.15 + i * 0.06,
-            Math.max(20, base * .18)
+    const bg =
+        ctx.createRadialGradient(
+            W / 2,
+            H / 2,
+            0,
+            W / 2,
+            H / 2,
+            Math.min(W,H) * .6
         );
+
+    bg.addColorStop(
+        0,
+        "rgba(255,255,255,.025)"
+    );
+
+    bg.addColorStop(
+        1,
+        "rgba(0,0,0,0)"
+    );
+
+    ctx.fillStyle = bg;
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+    /*
+        Sakura
+    */
+
+    updatePetals();
+
+    for (const petal of petals) {
+        drawPetal(petal);
     }
 
     /*
-        Ortadaki küçük kalp
+        Kalp
     */
 
-    ctx.save();
+    drawHeart(time);
 
-    ctx.translate(width / 2, height / 2);
+    /*
+        Merkez ışığı
+    */
 
-    const centerScale =
-        1 +
-        Math.sin(time * 3) * 0.08;
-
-    ctx.scale(centerScale, centerScale);
-
-    ctx.font = "42px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    ctx.fillStyle = "white";
-
-    ctx.shadowColor = "white";
-    ctx.shadowBlur = 25;
-
-    ctx.fillText("🤍", 0, 0);
-
-    ctx.restore();
+    drawCenterGlow(time);
 
     requestAnimationFrame(animate);
+
 }
 
-animate();
+requestAnimationFrame(animate);
