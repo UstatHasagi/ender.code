@@ -1,261 +1,62 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ender.Code — Kodlar, projeler ve yazılım geliştirme çalışmalarının bulunduğu kişisel kod arşivi.">
-<title>Ender.Code | Hakkında</title>
-<link rel="icon" type="image/png" href="foto/weblogo.png">
-
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Segoe UI",sans-serif;
-}
-
-body{
-background:#0b1120;
-color:white;
-overflow-x:hidden;
-}
-
-/* Hareketli Arkaplan */
-
-body::before{
-content:"";
-position:fixed;
-width:200%;
-height:200%;
-background:
-radial-gradient(circle,#2563eb22 0%,transparent 25%),
-radial-gradient(circle,#3b82f611 0%,transparent 35%);
-background-size:350px 350px;
-animation:bg 18s linear infinite;
-z-index:-2;
-}
-
-@keyframes bg{
-from{
-transform:translate(0,0);
-}
-to{
-transform:translate(-220px,-220px);
-}
-}
-
-header{
-padding:25px 10%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(255,255,255,.04);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.logo{
-font-size:30px;
-font-weight:bold;
-}
-
-.logo span{
-color:#3b82f6;
-}
-
-.back{
-color:white;
-text-decoration:none;
-transition:.3s;
-}
-
-.back:hover{
-color:#3b82f6;
-}
-
-.hero{
-text-align:center;
-padding:70px 20px 40px;
-animation:fade 1s;
-}
-
-.hero h1{
-font-size:55px;
-margin-bottom:15px;
-}
-
-.hero p{
-color:#b8c0d4;
-font-size:18px;
-}
-
-.grid{
-width:90%;
-max-width:1200px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:30px;
-padding:40px 0 80px;
-}
-
-.card{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(15px);
-border-radius:20px;
-padding:35px;
-text-align:center;
-text-decoration:none;
-color:white;
-transition:.35s;
-position:relative;
-overflow:hidden;
-}
-
-.card::before{
-content:"";
-position:absolute;
-width:180px;
-height:180px;
-background:#3b82f620;
-border-radius:50%;
-top:-80px;
-right:-80px;
-transition:.4s;
-}
-
-.card:hover::before{
-transform:scale(1.6);
-}
-
-.card:hover{
-transform:translateY(-12px);
-box-shadow:0 0 35px rgba(59,130,246,.35);
-border-color:#3b82f6;
-}
-
-.icon{
-font-size:65px;
-margin-bottom:20px;
-}
-
-.card h2{
-margin-bottom:10px;
-}
-
-.card p{
-color:#b7bfd1;
-line-height:1.6;
-}
-
-footer{
-padding:30px;
-text-align:center;
-color:#7f8aa0;
-border-top:1px solid rgba(255,255,255,.08);
-}
-
-@keyframes fade{
-
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ender.Code — Kodlar, projeler ve yazılım geliştirme çalışmalarının bulunduğu kişisel kod arşivi.">
+  <title>Ender.Code | İletişim</title>
+  <link rel="icon" type="image/png" href="foto/weblogo.png">
+  <link rel="stylesheet" href="css/about.css">
 </head>
 <body>
 
-<header>
+  <header>
+    <div class="logo">
+      Ender<span>.Code</span>
+    </div>
+    <a class="back" href="index.html">← Ana Sayfa</a>
+  </header>
 
-<div class="logo">
-Ender<span>.Code</span>
-</div>
+  <section class="hero">
+    <h1>İletişim</h1>
+    <p>Bir sorunuz, öneriniz veya geri bildiriminiz varsa bize Discord üzerinden ulaşabilirsiniz.</p>
+  </section>
 
-<a class="back" href="index.html">← Ana Sayfa</a>
+  <section class="contact">
+    <div class="discord-card">
+      <div class="icon">🎮</div>
+      <h2>Discord</h2>
+      <p class="username">Ender.Code</p>
+      <p class="desc">
+        Sunucuya katılarak bizimle iletişime geçebilir, öneri veya hata bildiriminde bulunabilirsiniz.
+      </p>
+      <a href="#" class="btn">Discord'a Katıl</a>
+    </div>
+  </section>
 
-</header>
+  <section class="info">
+    <div class="box">
+      <h3>🟢 Durum</h3>
+      <p>
+        Genellikle gün içerisinde aktif oluruz. Müsait olduğumuzda mümkün olan en kısa sürede dönüş yaparız.
+      </p>
+    </div>
 
-<section class="hero">
+    <div class="box">
+      <h3>❔ Kimiz Biz</h3>
+      <p>
+        2019 yılında kod geliştirmeye ve yeni projeler üretmeye başladık. Zaman içerisinde farklı projelerde yer aldık, birçok kez yollarımız ayrıldı, yeniden bir araya geldik ve her seferinde kendimizi biraz daha geliştirdik.
+        2022 yılında Ender.Code adı altında bir araya gelerek çalışmalarımıza yeni bir kimlik kazandırdık. O günden bu yana farklı alanlarda 50'den fazla projeye destek verdik, yeni teknolojiler öğrendik ve edindiğimiz deneyimleri geliştirmeye devam ettik.
+        Bugün geldiğimiz noktada ise artık sadece kendi projelerimizi geliştirmek değil, Ender.Code topluluğunun üyelerine de katkı sağlamak istiyoruz.
+        Burası; öğrendiklerimizi paylaşabileceğimiz, geliştirdiğimiz kodları bir araya getirebileceğimiz ve birlikte daha iyi projeler üretebileceğimiz bir alan.
+        Geçmişimiz bizi buraya getirdi. Şimdi sıra geleceği birlikte geliştirmekte.
+      </p>
+    </div>
+  </section>
 
-<h1>İletişim</h1>
-
-<p>
-Bir sorunuz, öneriniz veya geri bildiriminiz varsa bize Discord üzerinden ulaşabilirsiniz.
-</p>
-
-</section>
-
-<section class="contact">
-
-<div class="discord-card">
-
-<div class="icon">
-🎮
-</div>
-
-<h2>Discord</h2>
-
-<p class="username">
-Ender.Code
-</p>
-
-<p class="desc">
-Sunucuya katılarak bizimle iletişime geçebilir, öneri veya hata bildiriminde bulunabilirsiniz.
-</p>
-
-<a href="#" class="btn">
-Discord'a Katıl
-</a>
-
-</div>
-
-</section>
-
-<section class="info">
-
-<div class="box">
-
-<h3>🟢 Durum</h3>
-
-<p></p>
-Genellikle gün içerisinde aktif oluruz.
-Müsait olduğumuzda mümkün olan en kısa sürede dönüş yaparız.
-</p>
-
-</div>
-
-<div class="box" style="margin-top: -200px;">
-
-<h3>❔ Kimiz Biz</h3>
-
-<p>
-2019 yılında kod geliştirmeye ve yeni projeler üretmeye başladık. Zaman içerisinde farklı projelerde yer aldık, birçok kez yollarımız ayrıldı, yeniden bir araya geldik ve her seferinde kendimizi biraz daha geliştirdik.
-2022 yılında Ender.Code adı altında bir araya gelerek çalışmalarımıza yeni bir kimlik kazandırdık. O günden bu yana farklı alanlarda 50'den fazla projeye destek verdik, yeni teknolojiler öğrendik ve edindiğimiz deneyimleri geliştirmeye devam ettik.
-Bugün geldiğimiz noktada ise artık sadece kendi projelerimizi geliştirmek değil, Ender.Code topluluğunun üyelerine de katkı sağlamak istiyoruz.
-Burası; öğrendiklerimizi paylaşabileceğimiz, geliştirdiğimiz kodları bir araya getirebileceğimiz ve birlikte daha iyi projeler üretebileceğimiz bir alan.
-Geçmişimiz bizi buraya getirdi. Şimdi sıra geleceği birlikte geliştirmekte.</p>
-
-</div>
-
-</section>
-
-<footer>
-
-© 2022 Ender.Code • Made with Mami77
-</footer>
+  <footer>
+    © 2022 Ender.Code • Made with Mami77
+  </footer>
 
 </body>
 </html>
