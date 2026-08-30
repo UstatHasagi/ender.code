@@ -1,0 +1,179 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #0b1120;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Hareketli Arkaplan */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle, #2563eb22 0%, transparent 25%),
+    radial-gradient(circle, #3b82f611 0%, transparent 35%);
+  background-size: 350px 350px;
+  animation: bg 18s linear infinite;
+  z-index: -2;
+}
+
+@keyframes bg {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-220px, -220px); }
+}
+
+header {
+  padding: 25px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, .04);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #3b82f6;
+}
+
+.back {
+  color: white;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.back:hover {
+  color: #3b82f6;
+}
+
+.hero {
+  text-align: center;
+  padding: 70px 20px 40px;
+  animation: fade 1s;
+}
+
+.hero h1 {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #b8c0d4;
+  font-size: 18px;
+}
+
+/* Projeler Grid Yapısı */
+.projects-grid {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px 0 80px;
+}
+
+/* Proje Kartı */
+.project-card {
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .08);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: .35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: #3b82f620;
+  border-radius: 50%;
+  top: -80px;
+  right: -80px;
+  transition: .4s;
+}
+
+.project-card:hover::before {
+  transform: scale(1.6);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 35px rgba(59, 130, 246, .35);
+  border-color: #3b82f6;
+}
+
+.project-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.project-card h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.project-card p {
+  color: #b7bfd1;
+  line-height: 1.6;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+/* Proje Link Butonu */
+.project-btn {
+  display: inline-block;
+  text-align: center;
+  background: #3b82f6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: .3s;
+  z-index: 1;
+}
+
+.project-btn:hover {
+  background: #2563eb;
+  box-shadow: 0 0 15px rgba(59, 130, 246, .5);
+}
+
+footer {
+  padding: 30px;
+  text-align: center;
+  color: #7f8aa0;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
