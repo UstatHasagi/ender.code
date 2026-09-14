@@ -154,7 +154,7 @@
 
 
     // ==========================================
-    // GALAXY
+    // Galaksi
     // ==========================================
 
     const galaxy = new THREE.Group();
@@ -162,7 +162,9 @@
     scene.add(galaxy);
 
 
-    // GALAXY CORE
+    // =========================================
+    // Galaksi Çekirdeği
+    // =========================================
 
     const coreGeometry =
       new THREE.SphereGeometry(
@@ -186,7 +188,7 @@
 
 
     // ==========================================
-    // GALAXY PARTICLES
+    // Galaksi Partikülleri
     // ==========================================
 
     const particleCount = 18000;
@@ -278,7 +280,7 @@
 
 
     // ==========================================
-    // GALAXY RINGS
+    // Galaksi Halkaları
     // ==========================================
 
     for (let i = 0; i < 4; i++) {
@@ -322,7 +324,7 @@
 
 
     // ==========================================
-    // STAR FIELD
+    // Yıldızlar
     // ==========================================
 
     const starGeometry =
@@ -401,7 +403,7 @@
 
 
     // ==========================================
-    // HAND CONTROL VARIABLES
+    // El Kontrolü
     // ==========================================
 
     let targetRotationX = 0;
@@ -415,7 +417,7 @@
 
 
     // ==========================================
-    // MEDIAPIPE
+    // Mediapipe
     // ==========================================
 
     const video =
@@ -449,7 +451,7 @@
 
 
     // ==========================================
-    // HAND DETECTION
+    // El Algılama
     // ==========================================
 
     hands.onResults((results) => {
@@ -463,19 +465,19 @@
           results.multiHandLandmarks[0];
 
 
-        // INDEX FINGER
+        // Index parmağı ve başparmak konumlarını al
 
         const index =
           hand[8];
 
 
-        // THUMB
+        // Başparmak konumunu al
 
         const thumb =
           hand[4];
 
 
-        // EL KONUMU
+        // El Konumu
 
         const x =
           index.x;
@@ -484,7 +486,7 @@
           index.y;
 
 
-        // GALAKSİ ROTASYONU
+        // Galaksi Döndürme
 
         targetRotationY =
           (x - 0.5) * 5;
@@ -495,7 +497,7 @@
 
 
         // ======================================
-        // PINCH
+        // Galaksi Yakınlaştırma / Uzaklaştırma
         // ======================================
 
         const dx =
@@ -539,7 +541,7 @@
 
 
     // ==========================================
-    // CAMERA
+    // Kamera Başlatma
     // ==========================================
 
     let cameraController;
@@ -627,7 +629,7 @@
 
 
     // ==========================================
-    // START
+    // Başlatma Butonu
     // ==========================================
 
     document
@@ -644,7 +646,7 @@
 
 
     // ==========================================
-    // ANIMATION
+    // Animasyon Döngüsü
     // ==========================================
 
     function animate() {
@@ -654,7 +656,7 @@
       );
 
 
-      // SMOOTH HAND MOVEMENT
+      // Pürüzsüz geçişler
 
       currentRotationX +=
         (
@@ -677,7 +679,7 @@
         ) * 0.08;
 
 
-      // GALAXY
+      // Galaksi
 
       galaxy.rotation.x =
         currentRotationX;
@@ -696,7 +698,7 @@
       );
 
 
-      // STAR MOVEMENT
+      // Yıldızlar
 
       stars.rotation.y +=
         0.00015;
@@ -714,7 +716,7 @@
 
 
     // ==========================================
-    // WINDOW RESIZE
+    // Ekran Yeniden Boyutlandırma
     // ==========================================
 
     window.addEventListener(

@@ -1,3 +1,5 @@
+/* Arka Plan */
+
 *{
     margin:0;
     padding:0;
@@ -9,26 +11,69 @@ body{
     background:#0b1120;
     color:#fff;
     overflow-x:hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    position: relative;
 }
 
-/* Hareketli arka plan */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-    radial-gradient(circle at 20% 20%,rgba(0,162,255,.18),transparent 30%),
-    radial-gradient(circle at 80% 80%,rgba(0,81,255,.12),transparent 30%),
-    radial-gradient(circle at 50% 50%,rgba(255,255,255,.03),transparent 60%);
-    animation:bgMove 12s ease-in-out infinite alternate;
-    z-index:-1;
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+  z-index: -2;
+  pointer-events: none;
 }
 
-@keyframes bgMove{
-from{transform:scale(1);}
-to{transform:scale(1.15);}
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(147, 51, 234, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 35%);
+  filter: blur(60px);
+  animation: auraRotate 25s linear infinite;
+  z-index: -1;
+  pointer-events: none;
 }
+
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50px, -50px);
+  }
+}
+
+@keyframes auraRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Arka Plan */
 
 header{
     display:flex;
