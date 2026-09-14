@@ -74,35 +74,39 @@ body::after {
 }
 
 /* Arka Plan */
+/* Navbar */
 
-header {
-  padding: 25px 10%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, .04);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 10%;
+    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.04);
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.logo {
-  font-size: 30px;
-  font-weight: bold;
+.logo{
+    font-size:30px;
+    font-weight:bold;
 }
 
-.logo span {
-  color: #3b82f6;
+.logo span{
+    color:#3b82f6;
 }
 
-.back {
-  color: white;
-  text-decoration: none;
-  transition: .3s;
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:25px;
+    transition:.3s;
 }
 
-.back:hover {
-  color: #3b82f6;
+nav a:hover{
+    color:#3b82f6;
 }
+
+/* Navbar */
 
 .hero {
   text-align: center;

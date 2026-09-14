@@ -74,6 +74,7 @@ body::after {
 }
 
 /* Arka Plan */
+/* Navbar */
 
 header{
 padding:25px 10%;
@@ -85,7 +86,6 @@ backdrop-filter:blur(12px);
 border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-/* Navbar */
 
 .logo{
     font-size:30px;
