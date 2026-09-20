@@ -74,6 +74,7 @@ body::after {
 }
 
 /* Arka Plan */
+/* Navbar */
 
 header{
     display:flex;
@@ -104,6 +105,8 @@ nav a{
 nav a:hover{
     color:#3b82f6;
 }
+
+/* Navbar */
 
 .hero{
     min-height:85vh;
