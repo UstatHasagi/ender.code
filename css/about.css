@@ -1,0 +1,231 @@
+/* Arka Plan */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:#0b1120;
+    color:#fff;
+    overflow-x:hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 70% 70%, rgba(147, 51, 234, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 35%);
+  filter: blur(60px);
+  animation: auraRotate 25s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50px, -50px);
+  }
+}
+
+@keyframes auraRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Arka Plan */
+/* Navbar */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 10%;
+    backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.04);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#3b82f6;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:25px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#3b82f6;
+}
+
+/* Navbar */
+
+.hero {
+  text-align: center;
+  padding: 70px 20px 40px;
+  animation: fade 1s;
+}
+
+.hero h1 {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #b8c0d4;
+  font-size: 18px;
+}
+
+/* İletişim & Discord Kartı Stilleri */
+.contact {
+  display: flex;
+  justify-content: center;
+  padding: 20px 20px 40px;
+}
+
+.discord-card {
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .08);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+  transition: .35s;
+}
+
+.discord-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(59, 130, 246, .35);
+  border-color: #3b82f6;
+}
+
+.icon {
+  font-size: 65px;
+  margin-bottom: 15px;
+}
+
+.discord-card .username {
+  font-size: 22px;
+  font-weight: bold;
+  color: #3b82f6;
+  margin: 10px 0;
+}
+
+.discord-card .desc {
+  color: #b7bfd1;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  background: #3b82f6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #2563eb;
+  box-shadow: 0 0 15px rgba(59, 130, 246, .5);
+}
+
+/* Bilgi Kutuları Stilleri */
+.info {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.box {
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.box h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.box p {
+  color: #b7bfd1;
+  line-height: 1.7;
+}
+
+footer {
+  padding: 30px;
+  text-align: center;
+  color: #7f8aa0;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
